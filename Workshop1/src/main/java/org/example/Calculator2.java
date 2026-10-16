@@ -21,9 +21,9 @@ public class Calculator2 {
 
         double totalInterest = futureValue - deposit;
 
-        System.out.printf("The ending value of your account is: %.2f%n", futureValue);
+        System.out.printf("The ending value of your account is: $%.2f%n", futureValue);
 
-        System.out.printf("You earned %.2f in interest %n", totalInterest);
+        System.out.printf("You earned $%.2f in interest %n", totalInterest);
 
         scanner.close();
     }
