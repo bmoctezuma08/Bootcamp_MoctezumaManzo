@@ -9,7 +9,7 @@ public class Calculator2 {
         System.out.println("Enter your deposit: ");
         double deposit = scanner.nextDouble();
 
-        System.out.println("Enter your interest rate: ");
+        System.out.println("Enter your interest rate as a percent: ");
         double annualRate = scanner.nextDouble();
 
         System.out.println("Enter number of years: ");
