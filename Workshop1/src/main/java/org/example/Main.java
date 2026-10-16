@@ -20,8 +20,14 @@ public class Main {
         double monthlyRate = (annualRate / 12) / 100;
         double numPayments = loanLength * 12.0;
 
-        double monthlyPayment = principal * (annualRate * Math.pow(1 + annualRate, numPayments)) / Math.pow((1 + annualRate), numPayments) - 1;
+        double monthlyPayment = (principal * (monthlyRate * Math.pow(1 + monthlyRate, numPayments))) / (Math.pow((1 + monthlyRate), numPayments) - 1);
 
         double totalInterest = (monthlyPayment * numPayments) - principal;
+
+        System.out.printf("Your monthly payment: $%.2f%n", monthlyPayment);
+
+        System.out.printf("Total interest paid: $%.2f%n", totalInterest);
+
+        scanner.close();
     }
 }
