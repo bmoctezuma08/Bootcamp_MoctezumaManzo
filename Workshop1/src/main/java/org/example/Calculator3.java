@@ -12,7 +12,7 @@ public class Calculator3 {
         System.out.println("Enter expected interest rate as a percent: ");
         double annualRate = scanner.nextDouble();
 
-        System.out.println("Enter how years of payout: ");
+        System.out.println("Enter years until payout: ");
         int years = scanner.nextInt();
 
         double monthlyRate = (annualRate / 12) / 100;
