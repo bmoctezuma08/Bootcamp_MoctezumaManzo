@@ -24,7 +24,7 @@ public class MasterCalculator {
                     System.out.println("Enter loan principal: ");
                     double principal = scanner.nextDouble();
 
-                    System.out.println("Enter interest rate as a decimal: ");
+                    System.out.println("Enter interest rate as a percent: ");
                     double mortgageAnnualRate = scanner.nextDouble();
 
                     System.out.println("Enter loan length in years: ");
