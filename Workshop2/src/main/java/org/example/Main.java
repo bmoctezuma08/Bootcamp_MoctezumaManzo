@@ -56,8 +56,8 @@ public class Main {
                     }
                     Thread.sleep(1000);
                     System.out.println();
-                    System.out.println("Check out a book or return to menu?");
-                    System.out.println("Press Y for Yes, N for No.");
+                    System.out.println("Check out a book or exit to menu?");
+                    System.out.println("Press Y for Yes, X to Exit.");
                     String checkOutResponse = scanner.nextLine();
 
                     if (checkOutResponse.equalsIgnoreCase("Y")){
@@ -71,8 +71,6 @@ public class Main {
                             System.out.println("Book successfully checked out. Thank you for supporting your local neighborhood library!");
                             }
                         }
-                    } else {
-                        break;
                     }
                     break;
                 case 2:
@@ -84,14 +82,15 @@ public class Main {
                     }
                     Thread.sleep(1000);
                     System.out.println();
-                    System.out.println("Check in a book or return to menu?");
+                    System.out.println("Check in a book or exit to menu?");
                     System.out.println("Press C to check in, X to Exit.");
                     String response = scanner.nextLine();
 
-                    for (Book book: bookArray) {
-                        if (response.equalsIgnoreCase("C")) {
-                            System.out.println("Please enter book ID: ");
-                            int checkInID = Integer.parseInt(scanner.nextLine());
+                    if (response.equalsIgnoreCase("C")) {
+                        System.out.println("Please enter book ID: ");
+                        int checkInID = scanner.nextInt();
+                        scanner.nextLine();
+                        for (Book book: bookArray) {;
                             if (book.getId() == checkInID && book.isCheckedOut) {
                                 book.checkIn();
                                 System.out.println("Book has been checked in. Thank you!");
@@ -104,10 +103,6 @@ public class Main {
                     System.out.println("Exiting...");
                     System.out.println("Thank you for visiting the Tepatepec Neighborhood Library! Stay true to your-shelf :P");
                     System.exit(0);
-                    break;
-                case 0:
-                    System.out.println("Returning to Menu");
-                    Thread.sleep(1000);
                     break;
                 default:
                     System.out.println("Selection unavailable. Please select from the following options.");
