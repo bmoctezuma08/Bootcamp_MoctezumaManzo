@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -31,8 +32,6 @@ public class Main {
 
         System.out.println("Welcome to the Tepatepec Neighborhood Library!");
 
-        int choice = 0;
-
         while(true) {
             Thread.sleep(1000);
             System.out.println();
@@ -45,54 +44,70 @@ public class Main {
             System.out.println();
             System.out.println("Please select from the above options.");
 
-            try {
-                choice = Integer.parseInt(scanner.nextLine());
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid choice. System will now exit.");
-                System.exit(0);
-            }
+            int choice = Integer.parseInt(scanner.nextLine());
 
             switch (choice) {
                 case 1:
                     System.out.println("Available to be checked out: ");
-                    for (int i = 0; i < bookArray.length - 1; i++) {
-                        if (!bookArray[i].isCheckedOut) {
-                            System.out.println("- ID: " + bookArray[i].id + ", ISBN: " + bookArray[i].isbn + ", Title: " + bookArray[i].title );
-                            Thread.sleep(1000);
+                    for (Book book: bookArray) {
+                        if (!book.isCheckedOut) {
+                            System.out.println("- ID: " + book.getId() + ", ISBN: " + book.getIsbn() + ", Title: " + book.getTitle());
                         }
                     }
                     Thread.sleep(1000);
                     System.out.println();
-                    System.out.println("Would you like to check out a book?");
+                    System.out.println("Check out a book or return to menu?");
                     System.out.println("Press Y for Yes, N for No.");
-
                     String checkOutResponse = scanner.nextLine();
 
                     if (checkOutResponse.equalsIgnoreCase("Y")){
-                        Thread.sleep(1000);
-                        System.out.println("Enter the title of the book you would like to check out: ");
-                        String bookSelection = scanner.nextLine();
-                        for (int i = 0; i < bookArray.length - 1; i ++) {
-                            if (bookSelection.equalsIgnoreCase(bookArray[i].title)) {
-
+                        System.out.println("Enter the book ID to check out: ");
+                        int bookSelection = Integer.parseInt(scanner.nextLine());
+                        System.out.println("Enter your name: ");
+                        String patronName = scanner.nextLine();
+                        for (Book book: bookArray) {
+                            if (bookSelection == book.getId() && !book.isCheckedOut) {
+                            book.checkOut(patronName);
+                            System.out.println("Book successfully checked out. Thank you for supporting your local neighborhood library!");
                             }
                         }
+                    } else {
+                        break;
                     }
                     break;
                 case 2:
                     System.out.println("Currently checked out: ");
-                    for (int i = 0; i < bookArray.length - 1; i++) {
-                        if (bookArray[i].isCheckedOut) {
-                            System.out.println("- ID: " + bookArray[i].id + ", ISBN: " + bookArray[i].isbn + ", Title: " + bookArray[i].title + ", Checked out to " + bookArray[i].checkedOutTo);
-                            Thread.sleep(1000);
+                    for (Book book: bookArray) {
+                        if (book.isCheckedOut) {
+                            System.out.println("- ID: " + book.getId() + ", ISBN: " + book.getIsbn() + ", Title: " + book.getTitle() + ", Checked out to " + book.checkedOutTo);
                         }
                     }
+                    Thread.sleep(1000);
+                    System.out.println();
+                    System.out.println("Check in a book or return to menu?");
+                    System.out.println("Press C to check in, X to Exit.");
+                    String response = scanner.nextLine();
 
+                    for (Book book: bookArray) {
+                        if (response.equalsIgnoreCase("C")) {
+                            System.out.println("Please enter book ID: ");
+                            int checkInID = Integer.parseInt(scanner.nextLine());
+                            if (book.getId() == checkInID && book.isCheckedOut) {
+                                book.checkIn();
+                                System.out.println("Book has been checked in. Thank you!");
+                                break;
+                            }
+                        }
+                    }
                     break;
                 case 3:
                     System.out.println("Exiting...");
                     System.out.println("Thank you for visiting the Tepatepec Neighborhood Library! Stay true to your-shelf :P");
                     System.exit(0);
+                    break;
+                case 0:
+                    System.out.println("Returning to Menu");
+                    Thread.sleep(1000);
                     break;
                 default:
                     System.out.println("Selection unavailable. Please select from the following options.");

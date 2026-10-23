@@ -27,14 +27,6 @@ public class Book {
         return title;
     }
 
-    public boolean isCheckedOut() {
-        return isCheckedOut;
-    }
-
-    public void setCheckedOut(boolean checkedOut) {
-        isCheckedOut = checkedOut;
-    }
-
     public void setCheckedOutTo(String checkedOutTo) {
         this.checkedOutTo = checkedOutTo;
     }
