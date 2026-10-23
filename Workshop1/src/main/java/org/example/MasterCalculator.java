@@ -9,7 +9,7 @@ public class MasterCalculator {
         System.out.println("Welcome to Financial Calculator :D");
         int choice;
 
-        do {
+        while (true) {
             System.out.println("1. Mortgage Calculator");
             System.out.println("2. Future Value Calculator (Compound Interest)");
             System.out.println("3. Present Value of Annuity Calculator");
@@ -17,8 +17,13 @@ public class MasterCalculator {
 
             System.out.println("Please select a calculator (0-3)");
 
-            choice = scanner.nextInt();
-
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. System will now exit");
+                System.exit(0);
+                break;
+            }
             switch (choice) {
                 case 1:
                     System.out.println("Enter loan principal: ");
@@ -43,12 +48,6 @@ public class MasterCalculator {
                     System.out.printf("Your monthly payment: $%.2f%n", loanMonthlyPayments);
 
                     System.out.printf("Total interest paid: $%.2f%n", totalInterest);
-
-                    System.out.println("-------");
-
-                    System.out.println("0. Exit");
-                    System.out.println("4. Return to main menu");
-                    choice = scanner.nextInt();
                     break;
                 case 2:
                     System.out.println("Enter deposit amount: ");
@@ -68,12 +67,6 @@ public class MasterCalculator {
                     System.out.printf("The total value of your account is: $%.2f%n", futureValue);
 
                     System.out.printf("You earned $%.2f in interest. %n", interestEarned);
-
-                    System.out.println("-------");
-
-                    System.out.println("0. Exit");
-                    System.out.println("4. Return to main menu");
-                    choice = scanner.nextInt();
                     break;
                 case 3:
                     System.out.println("Enter monthly payout: ");
@@ -92,25 +85,15 @@ public class MasterCalculator {
                     double presentValue = monthlyPayout * (annuityValueOne / annuityMonthlyRate);
 
                     System.out.printf("The present value of your annuity is: $%.2f%n", presentValue);
-
-                    System.out.println("-------");
-
-                    System.out.println("0. Exit");
-                    System.out.println("4. Return to main menu");
-                    choice = scanner.nextInt();
-                    break;
-                case 4:
                     break;
                 case 0:
                     System.out.println("Exiting...");
+                    System.out.println("Thank you for visiting Financial Calculator! Please come again soon :)");
+                    System.exit(0);
                     break;
                 default:
-                    System.out.println("Selection unavailable. Please choose from the available options.");
+                    System.out.println("Selection unavailable. Please select from the following options.");
             }
-        } while(choice != 0);
-
-        System.out.println("Thank you for visiting Financial Calculator! Please come again soon :)");
-
-        scanner.close();
+        }
     }
 }
