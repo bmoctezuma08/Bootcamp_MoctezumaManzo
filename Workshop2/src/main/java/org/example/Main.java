@@ -57,7 +57,25 @@ public class Main {
                     System.out.println("Available to be checked out: ");
                     for (int i = 0; i < bookArray.length - 1; i++) {
                         if (!bookArray[i].isCheckedOut) {
-                            System.out.println("- " + bookArray[i].title);
+                            System.out.println("- ID: " + bookArray[i].id + ", ISBN: " + bookArray[i].isbn + ", Title: " + bookArray[i].title );
+                            Thread.sleep(1000);
+                        }
+                    }
+                    Thread.sleep(1000);
+                    System.out.println();
+                    System.out.println("Would you like to check out a book?");
+                    System.out.println("Press Y for Yes, N for No.");
+
+                    String checkOutResponse = scanner.nextLine();
+
+                    if (checkOutResponse.equalsIgnoreCase("Y")){
+                        Thread.sleep(1000);
+                        System.out.println("Enter the title of the book you would like to check out: ");
+                        String bookSelection = scanner.nextLine();
+                        for (int i = 0; i < bookArray.length - 1; i ++) {
+                            if (bookSelection.equalsIgnoreCase(bookArray[i].title)) {
+
+                            }
                         }
                     }
                     break;
@@ -65,10 +83,11 @@ public class Main {
                     System.out.println("Currently checked out: ");
                     for (int i = 0; i < bookArray.length - 1; i++) {
                         if (bookArray[i].isCheckedOut) {
-                            System.out.println("- " + bookArray[i].title);
+                            System.out.println("- ID: " + bookArray[i].id + ", ISBN: " + bookArray[i].isbn + ", Title: " + bookArray[i].title + ", Checked out to " + bookArray[i].checkedOutTo);
+                            Thread.sleep(1000);
                         }
                     }
-                    
+
                     break;
                 case 3:
                     System.out.println("Exiting...");
